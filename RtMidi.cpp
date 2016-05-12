@@ -154,6 +154,16 @@ RtMidiIn :: RtMidiIn( RtMidi::Api api, const std::string clientName, unsigned in
   throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
 }
 
+RtMidiIn :: RtMidiIn( std::unique_ptr<MidiInApi> api )
+  : RtMidi()
+{
+  rtapi_ = std::move(api);
+  if (!rtapi_) {
+    std::string errorText = "RtMidiIn: null API pointer provided";
+    throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
+  }
+}
+
 RtMidiIn :: ~RtMidiIn() throw()
 {
 }
@@ -220,6 +230,16 @@ RtMidiOut :: RtMidiOut( RtMidi::Api api, const std::string clientName )
   // case something weird happens, we'll thrown an error.
   std::string errorText = "RtMidiOut: no compiled API support found ... critical error!!";
   throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
+}
+
+RtMidiOut :: RtMidiOut( std::unique_ptr<MidiOutApi> api )
+  : RtMidi()
+{
+  rtapi_ = std::move(api);
+  if (!rtapi_) {
+    std::string errorText = "RtMidiOut: null API pointer provided";
+    throw( RtMidiError( errorText, RtMidiError::UNSPECIFIED ) );
+  }
 }
 
 RtMidiOut :: ~RtMidiOut() throw()

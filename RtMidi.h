@@ -189,6 +189,8 @@ class RtMidi
 */
 /**********************************************************************/
 
+class MidiInApi;
+
 // **************************************************************** //
 //
 // RtMidiIn and RtMidiOut class declarations.
@@ -231,6 +233,12 @@ class RtMidiIn : public RtMidi
   RtMidiIn( RtMidi::Api api=UNSPECIFIED,
             const std::string clientName = std::string( "RtMidi Input Client"),
             unsigned int queueSizeLimit = 100 );
+
+  //! Alternative constructor that accepts a custom API instance.
+  /*!
+    \param api        A MIDI IN API instance must be specified.
+  */
+  RtMidiIn( std::unique_ptr<MidiInApi> api );
 
   //! If a MIDI connection is still open, it will be closed by the destructor.
   ~RtMidiIn ( void ) throw();
@@ -329,6 +337,8 @@ class RtMidiIn : public RtMidi
 
 };
 
+class MidiOutApi;
+
 /**********************************************************************/
 /*! \class RtMidiOut
     \brief A realtime MIDI output class.
@@ -359,6 +369,13 @@ class RtMidiOut : public RtMidi
   */
   RtMidiOut( RtMidi::Api api=UNSPECIFIED,
              const std::string clientName = std::string( "RtMidi Output Client") );
+
+
+  //! Alternative constructor that accepts a custom API instance.
+  /*!
+    An exception will be thrown if a MIDI system initialization error occurs.
+  */
+  RtMidiOut( std::unique_ptr<MidiOutApi> api );
 
   //! The destructor closes any open MIDI connections.
   ~RtMidiOut( void ) throw();
