@@ -51,15 +51,12 @@
 //*********************************************************************//
 
 RtMidi :: RtMidi()
-  : rtapi_(0)
+  : rtapi_(nullptr)
 {
 }
 
 RtMidi :: ~RtMidi()
 {
-  if ( rtapi_ )
-    delete rtapi_;
-  rtapi_ = 0;
 }
 
 std::string RtMidi :: getVersion( void ) throw()
@@ -96,9 +93,7 @@ void RtMidi :: getCompiledApi( std::vector<RtMidi::Api> &apis ) throw()
 
 void RtMidiIn :: openMidiApi( RtMidi::Api api, const std::string clientName, unsigned int queueSizeLimit )
 {
-  if ( rtapi_ )
-    delete rtapi_;
-  rtapi_ = 0;
+  rtapi_.reset();
 
 #if defined(__UNIX_JACK__)
   if ( api == UNIX_JACK )
@@ -165,9 +160,7 @@ RtMidiIn :: ~RtMidiIn() throw()
 
 void RtMidiOut :: openMidiApi( RtMidi::Api api, const std::string clientName )
 {
-  if ( rtapi_ )
-    delete rtapi_;
-  rtapi_ = 0;
+  rtapi_.reset();
 
 #if defined(__UNIX_JACK__)
   if ( api == UNIX_JACK )

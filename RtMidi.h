@@ -49,6 +49,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 /************************************************************************/
 /*! \class RtMidiError
@@ -168,7 +169,7 @@ class RtMidi
   RtMidi();
   virtual ~RtMidi();
 
-  MidiApi *rtapi_;
+  std::unique_ptr<MidiApi> rtapi_;
 };
 
 /**********************************************************************/
