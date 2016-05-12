@@ -54,7 +54,7 @@ if [[ $AR = "no" ]] ; then
 fi
 
 # Compile as C++11
-#AX_CXX_COMPILE_STDCXX(11)
+AX_CXX_COMPILE_STDCXX(11)
 
 LT_INIT([win32-dll])
 AC_CONFIG_MACRO_DIR([m4])
