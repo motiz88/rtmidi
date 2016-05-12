@@ -1,0 +1,10 @@
+language: cpp
+compiler:
+  - clang
+  - gcc
+addons:
+  apt:
+    packages:
+    - libasound2
+    - libasound2-dev
+script: ./autogen.sh && make
