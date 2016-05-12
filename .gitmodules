@@ -1,3 +1,0 @@
-[submodule "autoconf-archive"]
-	path = autoconf-archive
-	url = git://git.savannah.gnu.org/autoconf-archive.git

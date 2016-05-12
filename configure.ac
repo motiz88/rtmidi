@@ -53,12 +53,8 @@ if [[ $AR = "no" ]] ; then
     AC_MSG_ERROR("Could not find ar - needed to create a library");
 fi
 
-
 LT_INIT([win32-dll])
-AC_CONFIG_MACRO_DIR([m4 autoconf-archive/m4])
-
-# C++11 compilation
-AX_CXX_COMPILE_STDCXX_11()
+AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for header files.
 AC_HEADER_STDC
