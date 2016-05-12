@@ -7,4 +7,5 @@ addons:
     packages:
     - libasound2
     - libasound2-dev
+	- automake1.9
 script: ./autogen.sh && make
