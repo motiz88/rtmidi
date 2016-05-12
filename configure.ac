@@ -53,6 +53,9 @@ if [[ $AR = "no" ]] ; then
     AC_MSG_ERROR("Could not find ar - needed to create a library");
 fi
 
+# Compile as C++11
+AX_CXX_COMPILE_STDCXX(11)
+
 LT_INIT([win32-dll])
 AC_CONFIG_MACRO_DIR([m4])
 
