@@ -97,23 +97,23 @@ void RtMidiIn :: openMidiApi( RtMidi::Api api, const std::string clientName, uns
 
 #if defined(__UNIX_JACK__)
   if ( api == UNIX_JACK )
-    rtapi_ = new MidiInJack( clientName, queueSizeLimit );
+    rtapi_.reset( new MidiInJack( clientName, queueSizeLimit ) );
 #endif
 #if defined(__LINUX_ALSA__)
   if ( api == LINUX_ALSA )
-    rtapi_ = new MidiInAlsa( clientName, queueSizeLimit );
+    rtapi_.reset( new MidiInAlsa( clientName, queueSizeLimit ) );
 #endif
 #if defined(__WINDOWS_MM__)
   if ( api == WINDOWS_MM )
-    rtapi_ = new MidiInWinMM( clientName, queueSizeLimit );
+    rtapi_.reset( new MidiInWinMM( clientName, queueSizeLimit ) );
 #endif
 #if defined(__MACOSX_CORE__)
   if ( api == MACOSX_CORE )
-    rtapi_ = new MidiInCore( clientName, queueSizeLimit );
+    rtapi_.reset( new MidiInCore( clientName, queueSizeLimit ) );
 #endif
 #if defined(__RTMIDI_DUMMY__)
   if ( api == RTMIDI_DUMMY )
-    rtapi_ = new MidiInDummy( clientName, queueSizeLimit );
+    rtapi_.reset( new MidiInDummy( clientName, queueSizeLimit ) );
 #endif
 }
 
@@ -164,23 +164,23 @@ void RtMidiOut :: openMidiApi( RtMidi::Api api, const std::string clientName )
 
 #if defined(__UNIX_JACK__)
   if ( api == UNIX_JACK )
-    rtapi_ = new MidiOutJack( clientName );
+    rtapi_.reset( new MidiOutJack( clientName ) );
 #endif
 #if defined(__LINUX_ALSA__)
   if ( api == LINUX_ALSA )
-    rtapi_ = new MidiOutAlsa( clientName );
+    rtapi_.reset( new MidiOutAlsa( clientName ) );
 #endif
 #if defined(__WINDOWS_MM__)
   if ( api == WINDOWS_MM )
-    rtapi_ = new MidiOutWinMM( clientName );
+    rtapi_.reset( new MidiOutWinMM( clientName ) );
 #endif
 #if defined(__MACOSX_CORE__)
   if ( api == MACOSX_CORE )
-    rtapi_ = new MidiOutCore( clientName );
+    rtapi_.reset( new MidiOutCore( clientName ) );
 #endif
 #if defined(__RTMIDI_DUMMY__)
   if ( api == RTMIDI_DUMMY )
-    rtapi_ = new MidiOutDummy( clientName );
+    rtapi_.reset( new MidiOutDummy( clientName ) );
 #endif
 }
 
